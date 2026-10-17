@@ -27,3 +27,15 @@
 @media(max-width:800px){.hero-image{inset:0 0 0 18%}}
 @media(max-width:530px){.hero-image{inset:0}}
 @media(prefers-reduced-motion:reduce){.hero-image .hero-video{display:none}}
+/* Actual nail work is accessible through the salon's official Instagram highlight. */
+.nails-card{background:radial-gradient(ellipse at 80% 15%,#80543b 0%,#483027 48%,#241712 100%);isolation:isolate}
+.nails-card:before{content:'✦';position:absolute;top:17%;right:16%;font-family:Georgia,serif;font-size:132px;line-height:1;color:#dbab83;opacity:.24;pointer-events:none}
+.nails-price-link{display:block;position:relative;width:100%;height:100%}
+.nails-card .service-content{bottom:76px}
+.nails-card .service-description{max-width:210px;line-height:1.55}
+.nails-real-link{position:absolute;left:28px;bottom:23px;color:#f9d0ab;border-bottom:1px solid #e1b28a;padding-bottom:6px;font-size:11px;letter-spacing:.01em;z-index:3}
+.nails-real-link:hover{color:#fff2e2}
+.nails-real-link span{margin-left:8px;font-size:16px}
+.menu-highlight-link{display:flex;justify-content:space-between;align-items:center;margin:20px 0 8px;background:#ead5c3;padding:17px 18px;font-size:12px;font-weight:700;color:#56392b}
+.menu-highlight-link:hover{background:#e1c4ac}
+@media(max-width:800px){.nails-card .service-content{bottom:67px}.nails-real-link{left:20px;bottom:17px;font-size:10px}}

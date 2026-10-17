@@ -93,6 +93,15 @@ function renderMenu() {
       menuContent.append(row);
     });
   });
+  if (selectedCategory === 'unhas') {
+    const highlight = document.createElement('a');
+    highlight.className = 'menu-highlight-link';
+    highlight.href = 'https://www.instagram.com/stories/highlights/18129399403687928/';
+    highlight.target = '_blank';
+    highlight.rel = 'noopener noreferrer';
+    highlight.textContent = 'Ver fotos reais de unhas no Instagram ↗';
+    menuContent.append(highlight);
+  }
 }
 
 function selectCategory(category) {
