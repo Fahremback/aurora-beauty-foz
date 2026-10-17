@@ -14,9 +14,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20261016-gallery2">
+  <style id="portfolio-fallback">
+    .portfolio-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .portfolio-grid>.work-card{grid-column:auto;grid-row:auto;display:block;min-width:0;height:165px;overflow:hidden}
+    .portfolio-grid>.work-card>img{display:block;width:100%;height:100%;object-fit:cover}
+    .portfolio-grid>.work-card[hidden]{display:none!important}
+    @media(max-width:800px){.portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.portfolio-grid>.work-card{height:145px}}
+  </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BeautySalon","name":"Aurora Beauty","description":"Serviços de beleza, sobrancelhas, cílios, manicure, pedicure, depilação e cabelo.","address":{"@type":"PostalAddress","addressLocality":"Foz do Iguaçu","addressRegion":"PR","addressCountry":"BR"},"sameAs":["https://www.instagram.com/aurorabeautyfoz/"],"priceRange":"R$ 15 – R$ 310"}</script>
-  <script defer src="main.js"></script>
+  <script defer src="main.js?v=20261016-gallery2"></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -104,6 +111,14 @@
           <button class="work-card" type="button" data-work-category="olhar" data-media-src="assets/cilios-trabalho-3.webp" data-media-caption="Cílios • Aurora Beauty"><img src="assets/cilios-trabalho-3.webp" alt="Close do acabamento de cílios da Aurora Beauty" loading="lazy"><span class="work-card-info"><span>OLHAR</span><strong>Acabamento delicado</strong></span><span class="work-open" aria-hidden="true">↗</span></button>
           <button class="work-card work-video-card" type="button" data-work-category="beleza" data-media-src="assets/labios-movimento.mp4" data-media-caption="Beleza em movimento • Aurora Beauty" data-poster="assets/labios-movimento-poster.webp"><img src="assets/labios-movimento-poster.webp" alt="Vídeo de detalhes de beleza" loading="lazy"><span class="work-play" aria-hidden="true">▶</span><span class="work-card-info"><span>EM MOVIMENTO</span><strong>Um detalhe especial</strong></span></button>
         </div>
+        <div class="portfolio-pagination" aria-label="Navegação da galeria">
+          <span id="gallery-status" aria-live="polite">Mostrando os trabalhos</span>
+          <div class="portfolio-page-actions">
+            <button type="button" id="gallery-prev" aria-label="Página anterior da galeria" disabled>← Anterior</button>
+            <span id="gallery-page">1 / 1</span>
+            <button type="button" id="gallery-next" aria-label="Próxima página da galeria">Próxima →</button>
+          </div>
+        </div>
         <p class="portfolio-note">Imagens dos registros da Aurora Beauty. Referências digitais estão identificadas; os resultados variam conforme cada atendimento.</p>
       </div>
     </section>
@@ -145,7 +160,7 @@
       </div>
     </section>
 
-    <section class="quote-section" id="sobre" aria-labelledby="quote-title"><div class="container quote-grid"><div class="quote-visual"><img src="assets/aurora-maca.webp" loading="lazy" alt="Sala de atendimento real da Aurora Beauty"><video class="studio-video" autoplay muted loop playsinline preload="metadata" poster="assets/aurora-maca.webp" aria-label="Passeio em vídeo pelo espaço real da Aurora Beauty"><source src="assets/aurora-ambiente.mp4" type="video/mp4"></video><div class="quote-visual-tag">CONHEÇA NOSSO ESPAÇO <span>✳</span></div></div><div class="quote-content"><p class="eyebrow dark"><span class="eyebrow-line"></span> NOSSO ESPAÇO</p><h2 id="quote-title">Mais que estética,<br><em>é sobre você.</em></h2><div class="quote-divider">✳</div><p>Acreditamos nos pequenos momentos que fazem uma grande diferença. Na leveza de um atendimento dedicado, na confiança de um novo visual e na alegria de se reconhecer no espelho.</p><p class="signature">Com carinho, Aurora Beauty.</p><a class="under-link dark-link" href="https://www.instagram.com/p/Dc1DvOgRedu/" target="_blank" rel="noopener noreferrer">Ver o vídeo original do nosso espaço <span aria-hidden="true">↗</span></a></div></div></section>
+    <section class="quote-section" id="sobre" aria-labelledby="quote-title"><div class="container quote-grid"><div class="quote-visual"><img src="assets/aurora-maca.webp" loading="lazy" alt="Sala de atendimento real da Aurora Beauty"><video class="studio-video" autoplay muted loop playsinline preload="metadata" poster="assets/aurora-maca.webp" aria-label="Passeio em vídeo pelo espaço real da Aurora Beauty"><source src="assets/aurora-estudio.mp4" type="video/mp4"></video><div class="quote-visual-tag">CONHEÇA NOSSO ESPAÇO <span>✳</span></div></div><div class="quote-content"><p class="eyebrow dark"><span class="eyebrow-line"></span> NOSSO ESPAÇO</p><h2 id="quote-title">Mais que estética,<br><em>é sobre você.</em></h2><div class="quote-divider">✳</div><p>Acreditamos nos pequenos momentos que fazem uma grande diferença. Na leveza de um atendimento dedicado, na confiança de um novo visual e na alegria de se reconhecer no espelho.</p><p class="signature">Com carinho, Aurora Beauty.</p><a class="under-link dark-link" href="https://www.instagram.com/p/Dc1DvOgRedu/" target="_blank" rel="noopener noreferrer">Ver o vídeo original do nosso espaço <span aria-hidden="true">↗</span></a></div></div></section>
 
     <section class="instagram-section section-pad" id="instagram" aria-labelledby="insta-title"><div class="container instagram-layout"><div class="instagram-copy"><p class="eyebrow light"><span class="eyebrow-line"></span> VAMOS NOS CONECTAR?</p><h2 id="insta-title">Beleza também é <em>compartilhar.</em></h2><p>Acompanhe os trabalhos, novidades e detalhes do nosso dia a dia diretamente no Instagram.</p><a href="https://www.instagram.com/aurorabeautyfoz/" target="_blank" rel="noopener noreferrer" class="btn btn-gold">Seguir @aurorabeautyfoz <span aria-hidden="true">↗</span></a></div><a class="instagram-profile" href="https://www.instagram.com/aurorabeautyfoz/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram da Aurora Beauty"><div class="ig-frame"><img src="assets/instagram-profile.jpg" alt="Foto do perfil oficial Aurora Beauty no Instagram"><div><small>INSTAGRAM OFICIAL</small><strong>@aurorabeautyfoz</strong><span>Veja nossos trabalhos reais <span aria-hidden="true">↗</span></span></div></div><span class="profile-bottom">FOZ DO IGUAÇU • PR <span aria-hidden="true">✦</span></span></a></div></section>
 

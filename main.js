@@ -214,19 +214,59 @@ if (ambientVideo) {
 // Filter the portfolio without removing work cards from the document.
 const galleryFilters = [...document.querySelectorAll('[data-gallery-filter]')];
 const workCards = [...document.querySelectorAll('.work-card')];
+const galleryPrev = document.getElementById('gallery-prev');
+const galleryNext = document.getElementById('gallery-next');
+const galleryPageIndicator = document.getElementById('gallery-page');
+const galleryStatus = document.getElementById('gallery-status');
+let galleryCategory = 'todos';
+let galleryPage = 0;
+let galleryPageSize = 0;
+
+function renderGallery() {
+  const perPage = window.matchMedia('(max-width: 800px)').matches ? 4 : 8;
+  const matching = workCards.filter(card =>
+    galleryCategory === 'todos' || card.dataset.workCategory === galleryCategory
+  );
+  const totalPages = Math.max(1, Math.ceil(matching.length / perPage));
+  galleryPage = Math.min(galleryPage, totalPages - 1);
+  galleryPageSize = perPage;
+  workCards.forEach(card => {
+    const matchingIndex = matching.indexOf(card);
+    card.hidden = matchingIndex === -1 ||
+      matchingIndex < galleryPage * perPage ||
+      matchingIndex >= (galleryPage + 1) * perPage;
+  });
+  galleryPrev.disabled = galleryPage === 0;
+  galleryNext.disabled = galleryPage >= totalPages - 1;
+  galleryPageIndicator.textContent = (galleryPage + 1) + ' / ' + totalPages;
+  const first = matching.length ? galleryPage * perPage + 1 : 0;
+  const last = Math.min((galleryPage + 1) * perPage, matching.length);
+  galleryStatus.textContent = `Mostrando ${first}–${last} de ${matching.length} trabalhos`;
+}
+
 galleryFilters.forEach(filter => {
   filter.addEventListener('click', () => {
-    const chosen = filter.dataset.galleryFilter;
+    galleryCategory = filter.dataset.galleryFilter;
+    galleryPage = 0;
     galleryFilters.forEach(button => {
       const active = button === filter;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    workCards.forEach(card => {
-      card.hidden = chosen !== 'todos' && card.dataset.workCategory !== chosen;
-    });
+    renderGallery();
   });
 });
+galleryPrev.addEventListener('click', () => {
+  if (galleryPage > 0) { galleryPage--; renderGallery(); }
+});
+galleryNext.addEventListener('click', () => {
+  if (!galleryNext.disabled) { galleryPage++; renderGallery(); }
+});
+window.addEventListener('resize', () => {
+  const nextSize = window.matchMedia('(max-width: 800px)').matches ? 4 : 8;
+  if (nextSize !== galleryPageSize) { galleryPage = 0; renderGallery(); }
+});
+renderGallery();
 
 // Accessible lightbox with still photos and user-initiated video playback.
 const lightbox = document.getElementById('work-lightbox');
