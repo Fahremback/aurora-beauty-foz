@@ -206,6 +206,35 @@
 @media(max-width:1000px){.contact-heading{gap:25px}.contact-card{min-height:315px;padding:26px 19px}.contact-card h3{font-size:24px}}
 @media(max-width:800px){.contact-heading{flex-direction:column;align-items:flex-start;gap:17px}.contact-heading>p{max-width:550px}.contact-grid{grid-template-columns:1fr;gap:11px}.contact-card{min-height:0;padding:21px 23px 23px}.contact-symbol{margin:18px 0 12px}.contact-card p,.contact-card address{margin-bottom:22px}}
 @media(max-width:530px){.contact-heading{margin-bottom:29px}.contact-heading h2{font-size:clamp(39px,10vw,52px)}.contact-card h3{font-size:24px}.contact-card{padding:21px}}
+/* Multi-page layout: a dedicated navigation and concise editorial introduction. */
+body.subpage .site-header,body.subpage .site-header.scrolled{position:sticky;top:0;left:auto;width:100%;background:#251813;box-shadow:0 5px 25px rgba(25,12,6,.15);backdrop-filter:blur(12px)}
+body.subpage .site-header .header-inner{height:84px}
+body.subpage .desktop-nav a[aria-current="page"],body.subpage .mobile-nav a[aria-current="page"]{color:#f0b986;border-bottom:1px solid #d9a474;padding-bottom:7px}
+.page-banner{background:#f6eee5;position:relative;overflow:hidden;border-bottom:1px solid #dfcfbe}
+.page-banner-inner{min-height:262px;display:flex;align-items:center;justify-content:space-between;gap:60px;padding:56px 0 53px}
+.page-banner .eyebrow{margin:0 0 15px}
+.page-banner h1{font-family:var(--font-serif);font-size:clamp(48px,5.5vw,82px);font-weight:400;letter-spacing:-.055em;line-height:1.14;margin:0 0 15px;color:#2d1f18}
+.page-banner h1 em{color:#ae7856;font-weight:400}
+.page-banner-inner>div>p:last-child{font-size:14px;line-height:1.85;max-width:640px;color:#78675b;margin:0}
+.page-banner-mark{font:400 clamp(105px,14vw,205px)/.9 Georgia,serif;opacity:.48;color:#cda47f;flex-shrink:0}
+body.subpage .services,body.subpage .portfolio,body.subpage .feedback-section{padding-top:79px}
+body.subpage .contact-section{padding-top:78px}
+body.subpage .quote-section{margin:0}
+body.subpage .footer{padding-top:64px}
+@media(max-width:800px){
+ body.subpage .site-header .header-inner{height:74px}
+ .page-banner-inner{min-height:224px;padding:44px 0 43px;gap:20px}
+ .page-banner-mark{font-size:110px}
+ .page-banner h1{font-size:clamp(42px,8.5vw,62px)}
+ body.subpage .services,body.subpage .portfolio,body.subpage .feedback-section,body.subpage .contact-section{padding-top:60px}
+}
+@media(max-width:530px){
+ .page-banner-inner{min-height:195px;padding:39px 0 37px}
+ .page-banner-mark{display:none}
+ .page-banner h1{font-size:clamp(42px,11vw,57px)}
+ .page-banner-inner>div>p:last-child{font-size:13px}
+ body.subpage .services,body.subpage .portfolio,body.subpage .feedback-section,body.subpage .contact-section{padding-top:52px}
+}
 @media(max-width:800px){
   .work-lightbox{width:calc(100vw - 20px)}
   .media-viewer{max-height:calc(100dvh - 20px);border-radius:16px}
