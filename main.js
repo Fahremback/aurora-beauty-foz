@@ -150,4 +150,15 @@ window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
 
 document.getElementById('year').textContent = new Date().getFullYear();
+const ambientVideo = document.querySelector('.hero-video');
+if (ambientVideo) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection?.saveData === true;
+  if (reducedMotion || saveData) {
+    ambientVideo.pause();
+    ambientVideo.hidden = true;
+  } else {
+    ambientVideo.play().catch(() => { ambientVideo.hidden = true; });
+  }
+}
 renderMenu();
