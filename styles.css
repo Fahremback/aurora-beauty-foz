@@ -235,6 +235,53 @@ body.subpage .footer{padding-top:64px}
  .page-banner-inner>div>p:last-child{font-size:13px}
  body.subpage .services,body.subpage .portfolio,body.subpage .feedback-section,body.subpage .contact-section{padding-top:52px}
 }
+/* Narrow-screen safety: keep the price panel, long text and actions inside the viewport. */
+@media(max-width:800px){
+  .price-layout,.intro-grid,.instagram-layout,.quote-grid{grid-template-columns:minmax(0,1fr)}
+  .price-layout>*,
+  .price-intro,.menu-panel,.menu-panel *,
+  .contact-heading,.contact-heading>*,
+  .contact-grid,.contact-grid>*,.page-banner-inner>div,
+  .footer-main,.footer-links,.footer-links>*{min-width:0}
+  .menu-panel{width:100%;max-width:100%;margin-inline:0}
+  .menu-row-name{min-width:0;overflow-wrap:anywhere}
+  .menu-row-price{flex:0 0 auto}
+  .menu-search{min-width:0}
+  .menu-search input{width:100%;min-width:0;flex:1}
+  .footer-links{flex-wrap:wrap}
+  .footer-links a{overflow-wrap:anywhere;word-break:break-word}
+  .contact-heading h2,.page-banner h1,.price-intro h2{overflow-wrap:break-word}
+}
+@media(max-width:530px){
+  .container{width:calc(100% - 36px)}
+  .price-section .menu-panel{padding:19px 12px 17px}
+  .price-layout{gap:22px}
+  .menu-cats{flex-wrap:wrap;overflow:visible;row-gap:6px}
+  .menu-tab{white-space:normal;flex:1 1 auto;text-align:center;padding:10px 9px}
+  .menu-tools{flex-wrap:wrap}
+  .menu-search{flex:1 1 145px}
+  .menu-row{gap:7px}
+  .menu-row-name{font-size:11.5px}
+  .menu-row-price{font-size:11px}
+  .portfolio-filters{flex-wrap:wrap;overflow:visible;margin-right:0;padding-right:0}
+  .gallery-filter{white-space:normal;min-width:0;flex:1 1 auto;text-align:center}
+  .feedback-gallery{grid-auto-flow:row;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-columns:auto;overflow:visible;gap:10px}
+  .feedback-item{width:100%;height:auto;aspect-ratio:4/6;min-width:0;padding:8px 8px 37px}
+  .feedback-item>span{font-size:9px;letter-spacing:.05em}
+}
+@media(max-width:350px){
+  .container{width:calc(100% - 28px)}
+  .top-note{letter-spacing:.09em;gap:8px;font-size:7px}
+  .page-banner h1{font-size:clamp(36px,10.7vw,43px)}
+  .price-intro h2{font-size:clamp(36px,11vw,48px)}
+  .menu-panel{padding:16px 10px}
+  .menu-row-name{font-size:11px}
+  .menu-row-price{font-size:10.5px}
+  .footer-links{gap:24px}
+  .footer-links>div{max-width:100%}
+  .hero-actions .btn,.service-bottom .under-link{max-width:100%}
+  .floating-book{right:max(12px,env(safe-area-inset-right,0px))}
+}
 @media(max-width:800px){
   .work-lightbox{width:calc(100vw - 20px)}
   .media-viewer{max-height:calc(100dvh - 20px);border-radius:16px}
