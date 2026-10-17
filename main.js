@@ -102,6 +102,46 @@ function renderMenu() {
     highlight.textContent = 'Ver fotos reais de unhas no Instagram ↗';
     menuContent.append(highlight);
   }
+  if (selectedCategory === 'depilacao') {
+    const proof = document.createElement('section');
+    proof.className = 'depilation-results';
+    proof.setAttribute('aria-label', 'Antes e depois real da depilação de axilas');
+
+    const heading = document.createElement('div');
+    heading.className = 'depilation-results-heading';
+    const title = document.createElement('strong');
+    title.textContent = 'Depilação de axilas com cera';
+    const subtitle = document.createElement('span');
+    subtitle.textContent = 'Resultado real da Aurora Beauty';
+    heading.append(title, subtitle);
+
+    const comparison = document.createElement('div');
+    comparison.className = 'depilation-comparison';
+    [
+      { name: 'Antes', src: 'assets/aurora-depilacao-antes.webp', alt: 'Axila antes da depilação, com pelos visíveis' },
+      { name: 'Depois', src: 'assets/aurora-depilacao-depois.webp', alt: 'A mesma axila após depilação com cera, sem pelos visíveis' },
+    ].forEach(item => {
+      const figure = document.createElement('figure');
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.alt;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      const caption = document.createElement('figcaption');
+      caption.textContent = item.name;
+      figure.append(img, caption);
+      comparison.append(figure);
+    });
+
+    const source = document.createElement('a');
+    source.className = 'depilation-source';
+    source.href = 'https://www.instagram.com/p/DeKlFWUmlrz/';
+    source.target = '_blank';
+    source.rel = 'noopener noreferrer';
+    source.textContent = 'Ver publicação original no Instagram ↗';
+    proof.append(heading, comparison, source);
+    menuContent.append(proof);
+  }
 }
 
 function selectCategory(category) {

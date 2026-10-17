@@ -39,3 +39,14 @@
 .menu-highlight-link{display:flex;justify-content:space-between;align-items:center;margin:20px 0 8px;background:#ead5c3;padding:17px 18px;font-size:12px;font-weight:700;color:#56392b}
 .menu-highlight-link:hover{background:#e1c4ac}
 @media(max-width:800px){.nails-card .service-content{bottom:67px}.nails-real-link{left:20px;bottom:17px;font-size:10px}}
+.depilation-results{margin:28px 0 7px;padding:22px 0 12px;border-top:1px solid #e0d1c3}
+.depilation-results-heading{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
+.depilation-results-heading strong{font-family:var(--font-serif);font-size:22px;font-weight:400;letter-spacing:-.02em}
+.depilation-results-heading span{font-size:11px;color:#9a7155;letter-spacing:.04em}
+.depilation-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.depilation-comparison figure{position:relative;overflow:hidden;margin:0;background:#ccb3a1;aspect-ratio:4/5}
+.depilation-comparison img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.depilation-comparison figcaption{position:absolute;left:10px;top:10px;background:#281912e9;color:#fff3e8;padding:6px 12px;letter-spacing:.1em;text-transform:uppercase;font-size:10px;font-weight:700}
+.depilation-source{display:inline-block;margin:16px 0 0;color:#704c36;border-bottom:1px solid #b98a65;padding-bottom:6px;font-size:11px;font-weight:700}
+.depilation-source:hover{color:#9a633f}
+@media(max-width:530px){.depilation-comparison{gap:8px}.depilation-results-heading strong{font-size:20px}.depilation-comparison figcaption{left:6px;top:6px;padding:5px 8px;font-size:9px}}
