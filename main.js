@@ -105,12 +105,12 @@ function renderMenu() {
   if (selectedCategory === 'depilacao') {
     const proof = document.createElement('section');
     proof.className = 'depilation-results';
-    proof.setAttribute('aria-label', 'Antes e depois real da depilação de axilas');
+    proof.setAttribute('aria-label', 'Antes e depois divulgado pela Aurora Beauty: axila sem um fio');
 
     const heading = document.createElement('div');
     heading.className = 'depilation-results-heading';
     const title = document.createElement('strong');
-    title.textContent = 'Depilação de axilas com cera';
+    title.textContent = 'Axila sem um fio';
     const subtitle = document.createElement('span');
     subtitle.textContent = 'Resultado real da Aurora Beauty';
     heading.append(title, subtitle);
@@ -119,7 +119,7 @@ function renderMenu() {
     comparison.className = 'depilation-comparison';
     [
       { name: 'Antes', src: 'assets/aurora-depilacao-antes.webp', alt: 'Axila antes da depilação, com pelos visíveis' },
-      { name: 'Depois', src: 'assets/aurora-depilacao-depois.webp', alt: 'A mesma axila após depilação com cera, sem pelos visíveis' },
+      { name: 'Depois', src: 'assets/aurora-depilacao-depois.webp', alt: 'A mesma axila na imagem de depois, sem pelos visíveis' },
     ].forEach(item => {
       const figure = document.createElement('figure');
       const img = document.createElement('img');
@@ -199,7 +199,7 @@ window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
 
 document.getElementById('year').textContent = new Date().getFullYear();
-const ambientVideo = document.querySelector('.hero-video');
+const ambientVideo = document.querySelector('.studio-video');
 if (ambientVideo) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection?.saveData === true;
@@ -210,4 +210,68 @@ if (ambientVideo) {
     ambientVideo.play().catch(() => { ambientVideo.hidden = true; });
   }
 }
+
+// Filter the portfolio without removing work cards from the document.
+const galleryFilters = [...document.querySelectorAll('[data-gallery-filter]')];
+const workCards = [...document.querySelectorAll('.work-card')];
+galleryFilters.forEach(filter => {
+  filter.addEventListener('click', () => {
+    const chosen = filter.dataset.galleryFilter;
+    galleryFilters.forEach(button => {
+      const active = button === filter;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    workCards.forEach(card => {
+      card.hidden = chosen !== 'todos' && card.dataset.workCategory !== chosen;
+    });
+  });
+});
+
+// Accessible lightbox with still photos and user-initiated video playback.
+const lightbox = document.getElementById('work-lightbox');
+const lightboxStage = document.getElementById('lightbox-stage');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+let triggerBeforeDialog = null;
+
+document.querySelectorAll('[data-media-src]').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    if (typeof lightbox.showModal !== 'function') return;
+    triggerBeforeDialog = trigger;
+    const url = trigger.dataset.mediaSrc;
+    const isVideo = /\.mp4$/i.test(url);
+    let media;
+    if (isVideo) {
+      media = document.createElement('video');
+      media.src = url;
+      media.poster = trigger.dataset.poster || '';
+      media.controls = true;
+      media.autoplay = true;
+      media.playsInline = true;
+      media.preload = 'metadata';
+      media.setAttribute('aria-label', trigger.dataset.mediaCaption || 'Vídeo da Aurora Beauty');
+    } else {
+      media = document.createElement('img');
+      media.src = url;
+      media.alt = trigger.dataset.mediaCaption || 'Imagem da Aurora Beauty ampliada';
+    }
+    lightboxStage.replaceChildren(media);
+    lightboxCaption.textContent = trigger.dataset.mediaCaption || 'Aurora Beauty';
+    lightbox.showModal();
+    if (isVideo) media.play().catch(() => {});
+    lightboxClose.focus();
+  });
+});
+function closeLightbox() {
+  if (lightbox.open) lightbox.close();
+}
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+lightbox.addEventListener('close', () => {
+  const video = lightboxStage.querySelector('video');
+  if (video) video.pause();
+  lightboxStage.replaceChildren();
+  triggerBeforeDialog?.focus({ preventScroll: true });
+});
 renderMenu();
